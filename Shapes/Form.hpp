@@ -34,11 +34,9 @@ public:
 		case Shapes::star:
 			_name = "star";
 			break;
-		}
-
-		
-			
+		}	
 	}
+
 	std::string GetName()const
 	{
 		return _name;
