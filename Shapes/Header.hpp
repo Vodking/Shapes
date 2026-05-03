@@ -7,5 +7,6 @@
 #include <vector>
 #include <cstdlib> 
 #include <ctime> 
+#include <Windows.h>
 
 #endif //HEADER_HPP

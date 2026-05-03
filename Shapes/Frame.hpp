@@ -1,6 +1,8 @@
 
 #pragma once
 
+#pragma warning(disable : 4430)
+
 #ifndef FRAME_HPP
 #define FRAME_HPP
 
@@ -21,6 +23,11 @@ public:
 	const Form& GetForm()const
 	{
 		return *_form;
+	}
+
+	std::string GetFormString()
+	{
+		return _form->GetName();
 	}
 
 	bool IsFit(const Toys& toy)const

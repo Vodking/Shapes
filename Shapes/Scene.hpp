@@ -11,16 +11,64 @@ class Scene
 {
 public:
 
-	bool TryPutToy(Toys& toy, Form hole)
+	Scene(int difficulty)
 	{
-		if(toy == hole)
+		CreateHand(difficulty);
+		_cycle = 0;
+		actionTook = false;
 	}
 
+	bool TryPutToy(Toys& toy, Frame& hole)
+	{
+		_cycle++;
+		if (toy.GetForm() ==  hole.GetForm())
+		{
+			for (int i = 0; i < _hand.size(); i++)
+			{
+				if (toy.IsSame(_hand[i]))
+				{
+					_hand.erase(_hand.begin() + i);
+				}
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
+	std::vector<Toys>& GetHand()
+	{
+		return _hand;
+	}
+
+	std::vector<Frame>& GetHoles()
+	{
+		return _holes;
+	}
+
+	int GetCycle()
+	{
+		return _cycle;
+	}
+
+	Toys& GetCurrent()
+	{
+		return _hand.at(_hand.size()-1);
+	}
+
+	
 
 private:
+	bool actionTook;
+	int _size, _cycle;
+	int _holeSize;
+	std::vector<Toys> _hand;
+	std::vector<Frame> _holes;
 
-	bool operator==()
+	Form forms[4] { Form(Form::Shapes::circle), Form(Form::Shapes::square), Form(Form::Shapes::star), Form(Form::Shapes::triangle) };
+
 
 	void CreateHand(int difficulty)
 	{
@@ -29,20 +77,32 @@ private:
 		if (difficulty == 1)
 		{
 			_size = 4;
+			_holeSize = 2;
+			_holes.push_back(Form(Form::Shapes::circle));
+			_holes.push_back(Form(Form::Shapes::square));
 		}
 		else if (difficulty == 2)
 		{
 			_size = 6;
+			_holeSize = 3;
+			_holes.push_back(Form(Form::Shapes::circle));
+			_holes.push_back(Form(Form::Shapes::square));
+			_holes.push_back(Form(Form::Shapes::star));
 		}
 		else if (difficulty == 3)
 		{
 			_size = 8;
+			_holeSize = 4;
+			_holes.push_back(Form(Form::Shapes::circle));
+			_holes.push_back(Form(Form::Shapes::square));
+			_holes.push_back(Form(Form::Shapes::star));
+			_holes.push_back(Form(Form::Shapes::triangle));
 		}
 
 
 		for (int i = 0; i < _size; i++)
 		{
-			int randNum = rand() + 1 % difficulty+1;
+			int randNum = rand() + 1 % _holeSize;
 
 			if (randNum == 1)
 			{
@@ -66,13 +126,9 @@ private:
 	}
 
 
-	int _size;
+	
 
-	std::vector<Toys> _hand;
-
-	Form forms[4] { Form(Form::Shapes::circle), Form(Form::Shapes::square), Form(Form::Shapes::star), Form(Form::Shapes::triangle) };
-
-	Frame _holes[4] { Form(Form::Shapes::circle), Form(Form::Shapes::square), Form(Form::Shapes::star), Form(Form::Shapes::triangle) };
+	//Frame _holes[4] { Form(Form::Shapes::circle), Form(Form::Shapes::square), Form(Form::Shapes::star), Form(Form::Shapes::triangle) };
 
 };
 
