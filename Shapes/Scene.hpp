@@ -18,18 +18,25 @@ public:
 		actionTook = false;
 	}
 
+	Scene()
+	{
+		_cycle = 0;
+		actionTook = false;
+	}
+
 	bool TryPutToy(const Toys& toy, Frame& hole)
 	{
 		_cycle++;
 		if (hole.IsFit(toy.GetShape())) //toy.GetForm() ==  hole.GetForm()
 		{
-			for (int i = 0; i < _hand.size(); i++)
-			{
-				if (toy.IsSame(_hand[i]))
-				{
-					_hand.erase(_hand.begin() + i);
-				}
-			}
+			//for (int i = 0; i < _hand.size(); i++)
+			//{
+			//	if (toy.IsSame(_hand[i]))
+			//	{
+			//		_hand.erase(_hand.begin() + i);
+			//	}
+			//}
+			_hand.pop_back();
 			return true;
 		}
 		else
@@ -72,8 +79,6 @@ private:
 
 	void CreateHand(int difficulty)
 	{
-
-		
 		if (difficulty == 1)
 		{
 			_size = 4;
@@ -102,7 +107,7 @@ private:
 
 		for (int i = 0; i < _size; i++)
 		{
-			int randNum = rand() + 1 % _holeSize;
+			int randNum = 1 + rand() % _holeSize;
 
 			if (randNum == 1)
 			{

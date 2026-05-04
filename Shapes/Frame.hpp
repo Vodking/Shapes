@@ -15,6 +15,22 @@ class Frame
 public:
 	Frame(const Form& form) :_form(std::make_unique<Form>(form)) {}// янгдюрэ йнмярпсйрнп он слнквюмхч х йнмярпсйрнп йнохпнбюмхъ дкъ FRAME х TOYS
 
+	Frame()
+	{
+		_form = std::make_unique<Form>(Form(Form::Shapes::circle));
+	}
+
+	Frame(const Frame& frame)
+	{
+		_form = std::make_unique<Form>(frame.GetShape());
+	}
+
+	Frame& operator =(const Frame& other)
+	{
+		_form = std::make_unique<Form>(other.GetShape());
+		return *this;
+	}
+
 
 	bool IsSame(const Frame& other)
 	{

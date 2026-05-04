@@ -14,7 +14,7 @@ public:
 		while (true)
 		{
 			std::cout << "Добро пожаловать в сравнилкинс\n";
-			std::cout << "1 - начать игру(лёгкая), 2 - начать игру(средняя), 3 - начать игру(сложная) 4 - выйти";
+			std::cout << "1 - начать игру(лёгкая), 2 - начать игру(средняя), 3 - начать игру(сложная) 4 - выйти: ";
 			do
 			{
 				std::cin >> input;
@@ -53,19 +53,25 @@ public:
 private:
 	std::vector<Toys> _hand;
 	std::vector<Frame> _holes;
+	Scene* scenePTR;
+	Scene scene;
 	
 	void Game(int difficulty)
 	{
 		int input;
-		Scene scene(difficulty);
+		scenePTR = new Scene(difficulty);
+		scene = *scenePTR;
 		_hand = scene.GetHand();
 		_holes = scene.GetHoles();
 
-		while (_hand.size() != 0)
+		while (true)
 		{
-			std::cout << "Ход " << scene.GetCycle();
+			std::cout << "Ход " << scene.GetCycle() << "\n";
 			PrintHand();
-
+			if (_hand.size() == 0)
+			{
+				break;
+			}
 			std::cout << "Текущая игрушка: " << _hand.at(_hand.size() - 1).GetFormString() << "\n";
 
 			PrintHoles();
@@ -74,6 +80,7 @@ private:
 			{
 				std::cout << "Введите номер отверстия: ";
 				std::cin >> input;
+				input--;
 				if (input >= _holes.size() || input < 0)
 				{
 					std::cout << "\nВвод вне диапазона!\n";
@@ -93,13 +100,17 @@ private:
 			}
 		}
 
-		
-
-
+		std::cout << "\nВы победили!\nКол-во ходов: " << scene.GetCycle() << "\n";
 	}
 
 	void PrintHand()
 	{
+		_hand = scene.GetHand();
+		if (_hand.size() == 0)
+		{
+			std::cout << "Ваша рука пуста!";
+			return;
+		}
 		std::cout << "Ваша рука: ";
 		for (int i = 0; i < _hand.size(); i++)
 		{

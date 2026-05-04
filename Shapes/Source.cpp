@@ -3,9 +3,10 @@
 #include "SceneDirector.hpp"
 int main()
 {
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
 	std::srand(time(NULL));
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+
 
 	SceneDirector director;
 	director.Menu();

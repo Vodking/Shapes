@@ -8,5 +8,6 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <Windows.h>
+#include <locale>
 
 #endif //HEADER_HPP

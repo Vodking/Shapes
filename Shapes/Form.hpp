@@ -37,6 +37,14 @@ public:
 		}	
 	}
 
+	Form()
+	{
+		_shape = Shapes::circle;
+		_name = "Крог";
+	}
+
+	Form(const Form&) = default;
+
 	std::string GetName()const
 	{
 		return _name;

@@ -12,6 +12,22 @@ class Toys
 public:
 	Toys(const Form& form) :_form(std::make_unique<Form>(form)) {}
 
+	Toys()
+	{
+		_form = std::make_unique<Form>(Form(Form::Shapes::circle));
+	}
+
+	Toys(const Toys& toy)
+	{
+		_form = std::make_unique<Form>(toy.GetShape());
+	}
+
+	Toys& operator =(const Toys& other)
+	{
+		_form = std::make_unique<Form>(other.GetShape());
+		return *this;
+	}
+
 	const Form& GetShape()const
 	{
 		return *_form;
