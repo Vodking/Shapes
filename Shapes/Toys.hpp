@@ -4,6 +4,7 @@
 #define TOYS_HPP
 
 #include "Header.hpp"
+#include "Frame.hpp"
 #include "Form.hpp"
 
 class Toys
@@ -16,10 +17,16 @@ public:
 		return *_form;
 	}
 
+	std::string GetFormString()
+	{
+		return _form->GetName();
+	}
+
 	bool IsSame(const Toys& other)const
 	{
 		return this == &other;
 	}
+
 
 private:
 	std::unique_ptr<Form> _form;

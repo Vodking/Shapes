@@ -23,16 +23,16 @@ public:
 		switch (shape)
 		{
 		case Shapes::circle:
-			_name = "circle";
+			_name = "Круг";
 			break;
 		case Shapes::triangle:
-			_name = "triangle";
+			_name = "Треугольник";
 			break;
 		case Shapes::square:
-			_name = "square";
+			_name = "Квадрат";
 			break;
 		case Shapes::star:
-			_name = "star";
+			_name = "Звезда";
 			break;
 		}	
 	}

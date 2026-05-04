@@ -1,10 +1,12 @@
 #include "Header.hpp"
 #include "Scene.hpp"
+#include "SceneDirector.hpp"
 int main()
 {
 	std::srand(time(NULL));
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
-	Form star(Form::Shapes::star);
-
-	Toys starToy(star);
+	SceneDirector director;
+	director.Menu();
 }
