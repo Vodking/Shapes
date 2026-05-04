@@ -18,10 +18,10 @@ public:
 		actionTook = false;
 	}
 
-	bool TryPutToy(Toys& toy, Frame& hole)
+	bool TryPutToy(const Toys& toy, Frame& hole)
 	{
 		_cycle++;
-		if (toy.GetForm() ==  hole.GetForm())
+		if (hole.IsFit(toy.GetShape())) //toy.GetForm() ==  hole.GetForm()
 		{
 			for (int i = 0; i < _hand.size(); i++)
 			{

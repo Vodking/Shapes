@@ -12,7 +12,7 @@ class Toys
 public:
 	Toys(const Form& form) :_form(std::make_unique<Form>(form)) {}
 
-	const Form& GetForm()const
+	const Form& GetShape()const
 	{
 		return *_form;
 	}
